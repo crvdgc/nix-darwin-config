@@ -52,7 +52,7 @@
       rustup
 
       # lean
-      # elan
+      elan
       ccache
 
       # lua
@@ -61,6 +61,7 @@
 
       # life
       hledger
+      hledger-web
     ];
 
   programs.direnv = {
@@ -69,9 +70,9 @@
     nix-direnv.enable = true;
   };
 
-  programs.fzf = {
-    enable = true;
-  };
+  programs.fzf.enable = true;
+
+  programs.home-manager.enable = true;
 
   programs.git = {
     enable = true;
