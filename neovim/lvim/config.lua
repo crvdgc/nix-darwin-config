@@ -14,6 +14,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "haskell",
   "c",
   "ledger",
+  "python",
 }
 -- extra parser for ASL {
 local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
@@ -37,7 +38,7 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers,
   })
 lvim.format_on_save = {
   enabled = true,
-  pattern = "*re,*.ml,*.iml,*.mli,dune,*.lua,*.lean,*.nix,*.hs,*.rs,*.cc",
+  pattern = "*re,*.ml,*.iml,*.mli,dune,*.lua,*.lean,*.nix,*.hs,*.rs,*.cc,*py",
 }
 
 vim.filetype.add({
