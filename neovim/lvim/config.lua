@@ -17,7 +17,7 @@ lvim.builtin.treesitter.ensure_installed = {
   "python",
 }
 -- extra parser for ASL {
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
 parser_config.asl = {
   install_info = {
     url = "/home/ubikium/Programs/asl.nvim", -- local path or git repo
@@ -31,11 +31,10 @@ parser_config.asl = {
 }
 -- }
 lvim.builtin.treesitter.indent.enable = false
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers,
-  {
-    "ocamllsp",
-    "rust-analyzer",
-  })
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
+  "ocamllsp",
+  "rust-analyzer",
+})
 lvim.format_on_save = {
   enabled = true,
   pattern = "*re,*.ml,*.iml,*.mli,dune,*.lua,*.lean,*.nix,*.hs,*.rs,*.cc,*py",
@@ -48,7 +47,6 @@ vim.filetype.add({
     asl = "asl",
   },
 })
-
 
 -- override ocamlformat for iml files
 vim.api.nvim_create_autocmd({
@@ -68,7 +66,7 @@ vim.api.nvim_create_autocmd({
     local sources = {
       null_ls.builtins.formatting.ocamlformat.with({
         extra_args = { "--impl" },
-      })
+      }),
     }
     null_ls.setup({ sources = sources })
   end,
@@ -86,8 +84,8 @@ vim.api.nvim_create_autocmd({
   callback = function()
     local null_ls = require("null-ls")
     local refmt = {
-      name      = "refmt",
-      method    = null_ls.methods.FORMATTING,
+      name = "refmt",
+      method = null_ls.methods.FORMATTING,
       filetypes = { "ocaml" },
       generator = null_ls.formatter({
         command = "refmt",
@@ -99,9 +97,8 @@ vim.api.nvim_create_autocmd({
   end,
 })
 
-
 -- Do not preselect the LSP completion
-lvim.builtin.cmp.preselect = require "cmp.types.cmp".PreselectMode.None
+lvim.builtin.cmp.preselect = require("cmp.types.cmp").PreselectMode.None
 
 -- }
 
@@ -113,11 +110,9 @@ lvim.builtin.cmp.preselect = require "cmp.types.cmp".PreselectMode.None
 ---@param alias string
 ---@param cmd function
 local add_alias_to_cmd = function(alias, cmd)
-  vim.api.nvim_create_user_command(alias,
-    function(_)
-      cmd()
-    end,
-    { nargs = 0 })
+  vim.api.nvim_create_user_command(alias, function(_)
+    cmd()
+  end, { nargs = 0 })
 end
 add_alias_to_cmd("WQ", vim.cmd.wq)
 add_alias_to_cmd("Wq", vim.cmd.wq)
@@ -141,18 +136,20 @@ lvim.builtin.which_key.mappings["j"] = {
 }
 
 lvim.builtin.which_key.mappings.b.d = {
-  "<cmd>bdelete<cr>", "Close Buffer",
+  "<cmd>bdelete<cr>",
+  "Close Buffer",
 }
 
 lvim.builtin.which_key.mappings.s.d = {
   ":Telescope live_grep search_dirs=",
-  "Telescope search directories"
+  "Telescope search directories",
 }
 
 lvim.builtin.which_key.mappings["h"] = {}
 
 lvim.builtin.which_key.mappings.h.h = {
-  "<cmd>noh<cr>", "No highlight",
+  "<cmd>noh<cr>",
+  "No highlight",
 }
 
 lvim.builtin.which_key.mappings.h.l = {
@@ -177,7 +174,7 @@ lvim.autocommands = {
       pattern = "*",
       callback = function()
         -- adjust type hint colors
-        local monokai = require('monokai')
+        local monokai = require("monokai")
         local palette = monokai.pro
         vim.api.nvim_set_hl(0, "LspCodeLens", { fg = palette.grey, bg = palette.base2 })
       end,
@@ -191,30 +188,32 @@ local components = require("lvim.core.lualine.components")
 lvim.builtin.lualine.sections.lualine_y = {
   components.location,
   function()
-    local space = vim.fn.search([[\s\+$]], 'nwc')
+    local space = vim.fn.search([[\s\+$]], "nwc")
     return space ~= 0 and "TW:" .. space or ""
   end,
   function()
     local space_pat = [[\v^ +]]
     local tab_pat = [[\v^\t+]]
-    local space_indent = vim.fn.search(space_pat, 'nwc')
-    local tab_indent = vim.fn.search(tab_pat, 'nwc')
+    local space_indent = vim.fn.search(space_pat, "nwc")
+    local tab_indent = vim.fn.search(tab_pat, "nwc")
     local mixed = (space_indent > 0 and tab_indent > 0)
     local mixed_same_line
     if not mixed then
-      mixed_same_line = vim.fn.search([[\v^(\t+ | +\t)]], 'nwc')
+      mixed_same_line = vim.fn.search([[\v^(\t+ | +\t)]], "nwc")
       mixed = mixed_same_line > 0
     end
-    if not mixed then return '' end
+    if not mixed then
+      return ""
+    end
     if mixed_same_line ~= nil and mixed_same_line > 0 then
-      return 'MI:' .. mixed_same_line
+      return "MI:" .. mixed_same_line
     end
     local space_indent_cnt = vim.fn.searchcount({ pattern = space_pat, max_count = 1e3 }).total
     local tab_indent_cnt = vim.fn.searchcount({ pattern = tab_pat, max_count = 1e3 }).total
     if space_indent_cnt > tab_indent_cnt then
-      return 'MI:' .. tab_indent
+      return "MI:" .. tab_indent
     else
-      return 'MI:' .. space_indent
+      return "MI:" .. space_indent
     end
   end,
 }
@@ -231,7 +230,7 @@ lvim.plugins = {
       require("nvim-surround").setup({
         -- Configuration here, or leave empty to use defaults
       })
-    end
+    end,
   },
   "tpope/vim-unimpaired",
   "tpope/vim-fugitive",
@@ -256,13 +255,15 @@ lvim.plugins = {
   },
   {
     "tanvirtin/monokai.nvim",
-    config = function() require("monokai").setup {} end
+    config = function()
+      require("monokai").setup({})
+    end,
   },
   {
     "simrat39/rust-tools.nvim",
     -- https://github.com/LunarVim/starter.lvim/blob/fdc38b5f4d95f81707f0606b49a444f9b93adf62/config.lua
     config = function()
-      require("rust-tools").setup {
+      require("rust-tools").setup({
         tools = {
           executor = require("rust-tools/executors").termopen, -- can be quickfix or termopen
           reload_workspace_from_cargo_toml = true,
@@ -300,7 +301,7 @@ lvim.plugins = {
         server = {
           on_attach = function(client, bufnr)
             require("lvim.lsp").common_on_attach(client, bufnr)
-            local rt = require "rust-tools"
+            local rt = require("rust-tools")
             vim.keymap.set("n", "K", rt.hover_actions.hover_actions, { buffer = bufnr })
           end,
 
@@ -317,16 +318,16 @@ lvim.plugins = {
             },
           },
         },
-      }
-    end
+      })
+    end,
   },
   {
     "phaazon/hop.nvim",
     branch = "v2", -- optional but strongly recommended
     config = function()
       -- you can configure Hop the way you like here; see :h hop-config
-      require "hop".setup()
-    end
+      require("hop").setup()
+    end,
   },
   {
     "ledger/vim-ledger",
@@ -336,9 +337,12 @@ lvim.plugins = {
     "johmsalas/text-case.nvim",
     keys = "ga",
     config = function()
-      require("textcase").setup {}
-    end
+      require("textcase").setup({})
+    end,
   },
+  -- Rocq prover {
+  'whonore/Coqtail',
+  -- }
 }
 
 -- nvim options {
@@ -363,7 +367,7 @@ local is_cmp_single_buffer = true
 -- also https://github.com/hrsh7th/nvim-cmp/discussions/670
 -- since setting lvim.builtin.cmp.sources doesn't reload cmp
 local toggle_cmp_all_buffers = function()
-  local cmp = require('cmp')
+  local cmp = require("cmp")
   local config = cmp.get_config()
   local new_sources = vim.tbl_filter(function(source)
     return source.name ~= "buffer"
@@ -378,16 +382,15 @@ local toggle_cmp_all_buffers = function()
           keyword_length = 2,
           get_bufnrs = function()
             return vim.api.nvim_list_bufs()
-          end
-        }
+          end,
+        },
       },
     })
   else
     vim.list_extend(new_sources, {
       {
         name = "buffer",
-        option = {
-        }
+        option = {},
       },
     })
   end
