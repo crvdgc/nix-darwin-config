@@ -105,7 +105,7 @@
     #   pluginConfig = builtins.readFile ./neovim/coc.vim;
     #   settings = import ./neovim/coc-settings.json.nix;
     # };
-    extraConfig = builtins.readFile ./neovim/init.vim;
+    # extraConfig = builtins.readFile ./neovim/init.vim;
     # extraLuaConfig = builtins.readFile ./neovim/init.lua;
   };
 
