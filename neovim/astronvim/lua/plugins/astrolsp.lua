@@ -23,6 +23,7 @@ return {
         enabled = true, -- enable or disable format on save globally
         allow_filetypes = { -- enable format on save for specified filetypes only
           "lua",
+          "python",
         },
         ignore_filetypes = { -- disable format on save for specified filetypes
           -- "python",
@@ -41,6 +42,7 @@ return {
     servers = {
       -- "pyright"
       "ocamllsp",
+      "ruff",
     },
     -- customize language server configuration options passed to `lspconfig`
     ---@diagnostic disable: missing-fields
