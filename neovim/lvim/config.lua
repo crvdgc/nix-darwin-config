@@ -34,7 +34,12 @@ lvim.builtin.treesitter.indent.enable = false
 vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, {
   "ocamllsp",
   "rust-analyzer",
+  "coq_lsp",
 })
+-- coq-lsp is supplied by the active Nix/direnv environment.  Keep Mason from
+-- trying to install its own copy if an ftplugin requests this server.
+table.insert(lvim.lsp.installer.setup.automatic_installation.exclude, "coq_lsp")
+
 lvim.format_on_save = {
   enabled = true,
   pattern = "*re,*.ml,*.iml,*.mli,dune,*.lua,*.lean,*.nix,*.hs,*.rs,*.cc,*py",
@@ -161,6 +166,9 @@ lvim.builtin.which_key.mappings.h.w = {
   "<cmd>set nonumber <bar> set signcolumn=no<cr>",
   "Writing mode",
 }
+
+-- used for Coqtail
+lvim.builtin.which_key.mappings['c'] = {}
 -- }
 
 -- }
