@@ -1,1 +1,1 @@
-/nix/store/ig57kcp016qh3y6x3fpkh29sz2pjnvyj-home-manager-files/.config/nvim/syntax/ipl.vim
+/nix/store/bx4xy6jp2mya2s0l3xs9hxdfd55xmray-home-manager-files/.config/nvim/syntax/ipl.vim
