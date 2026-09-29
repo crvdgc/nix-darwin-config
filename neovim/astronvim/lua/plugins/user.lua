@@ -49,9 +49,9 @@ return {
   {
     "whonore/Coqtail",
   },
-  {
-    "tomtomjhj/coq-lsp.nvim",
-  },
+  -- {
+  --   "tomtomjhj/coq-lsp.nvim",
+  -- },
   -- }
   -- -- == Examples of Adding Plugins ==
 
