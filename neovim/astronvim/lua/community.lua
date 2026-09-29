@@ -8,10 +8,11 @@
 return {
   "AstroNvim/astrocommunity",
   { import = "astrocommunity.pack.lua" },
+  -- import/override with your plugins folder
   { import = "astrocommunity.colorscheme.monokai-pro-nvim" },
 
   -- python
-  { import = "astrocommunity.pack.python.base" },
-  { import = "astrocommunity.pack.python.ruff" },
-  { import = "astrocommunity.pack.python.black" },
+  -- { import = "astrocommunity.pack.python.base" },
+  -- { import = "astrocommunity.pack.python.ruff" },
+  -- { import = "astrocommunity.pack.python.black" },
 }

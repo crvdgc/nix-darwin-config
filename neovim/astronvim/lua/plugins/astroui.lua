@@ -14,11 +14,19 @@ return {
     colorscheme = "monokai-pro",
     -- AstroUI allows you to easily modify highlight groups easily for any and all colorschemes
     highlights = {
-      init = { -- this table overrides highlights in all themes
-        -- Normal = { bg = "#1F1F1F" },
-      },
+      -- init = { -- this table overrides highlights in all themes
+      --   -- Normal = { bg = "#000000" },
+      -- },
       astrodark = { -- a table of overrides/changes when applying the astrotheme theme
         -- Normal = { bg = "#000000" },
+      },
+      init = {
+        Normal = { bg = "#1F1F1F" },
+        NormalNC = { bg = "#1F1F1F" },
+        NormalFloat = { bg = "#1F1F1F" },
+        FloatBorder = { bg = "#1F1F1F" },
+        SignColumn = { bg = "#1F1F1F" },
+        EndOfBuffer = { bg = "#1F1F1F" },
       },
     },
     -- Icons can be configured throughout the interface
