@@ -6,6 +6,15 @@
 
 ---@type LazySpec
 return {
+  -- Neovim 0.12 compat: AstroNvim v6's pinned snapshot constrains aerial to
+  -- ^2.2 (-> v2.7.0), whose treesitter backend crashes on Neovim 0.12 because
+  -- iter_matches() no longer supports { all = false }. v4.0.0 is the release
+  -- that explicitly targets Neovim >= 0.12.
+  {
+    "stevearc/aerial.nvim",
+    version = "^4",
+  },
+
   -- Rocq / Coqtail
   {
     "whonore/Coqtail",
