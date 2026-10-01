@@ -81,7 +81,7 @@
     extraConfig = {
       merge.tool = "fugitive";
       mergetool.keepBackup = false;
-      mergetool.fugitive.cmd = ''lvim -f -c "Gvdiffsplit!" "$MERGED"'';
+      mergetool.fugitive.cmd = ''nvim -f -c "Gvdiffsplit!" "$MERGED"'';
 
       # stop git from changing line endings
       core.autocrlf = false;
@@ -99,7 +99,7 @@
 
   programs.neovim = {
     enable = true;
-    plugins = import ./neovim/plugins.nix { inherit pkgs; };
+    # plugins = import ./neovim/plugins.nix { inherit pkgs; };
     # coc = {
     #   enable = true;
     #   pluginConfig = builtins.readFile ./neovim/coc.vim;
@@ -138,13 +138,13 @@
       };
 
       # use OCaml syntax for iml and ipl files
-      ".config/nvim/syntax/ipl.vim".source = ocaml-syntax;
-      ".config/nvim/syntax/iml.vim".source = ocaml-syntax;
+      # ".config/nvim/syntax/ipl.vim".source = ocaml-syntax;
+      # ".config/nvim/syntax/iml.vim".source = ocaml-syntax;
 
       # lean.nvim
-      ".config/nvim/plugin/lean.lua".source = ./neovim/lean.lua;
-      ".config/nvim/ftplugin/iml.vim".source = ./neovim/ftplugin/iml.vim;
-      ".config/nvim/ftplugin/ocaml.lua".source = ./neovim/ftplugin/ocaml.lua;
+      # ".config/nvim/plugin/lean.lua".source = ./neovim/lean.lua;
+      # ".config/nvim/ftplugin/iml.vim".source = ./neovim/ftplugin/iml.vim;
+      # ".config/nvim/ftplugin/ocaml.lua".source = ./neovim/ftplugin/ocaml.lua;
 
       ".inputrc".source = ./dotfiles/.inputrc;
       ".direnvrc".source = ./dotfiles/.direnvrc;

@@ -15,6 +15,16 @@ return {
     version = "^4",
   },
 
+  -- Neovim 0.12 compat: AstroNvim v6's snapshot pins none-ls.nvim to commit
+  -- a117163, which reads lsp.protocol._request_name_to_capability /
+  -- lsp._request_name_to_capability (both removed in Neovim 0.12) and crashes
+  -- on LSP client attach. Pin a commit that uses the 0.12 name
+  -- (_request_name_to_server_capability) and fixes supports_method detection.
+  {
+    "nvimtools/none-ls.nvim",
+    commit = "01f8e62ea11603e59ad9ff7afcfa94fd183f76d6",
+  },
+
   -- Rocq / Coqtail
   {
     "whonore/Coqtail",
